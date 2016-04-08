@@ -2,6 +2,7 @@
 import argparse
 
 from tic.game import Game
+from tic.ai import MinimaxAI
 from tic.exceptions import IllegalMoveError
 
 
@@ -31,7 +32,7 @@ you want to place your piece, counting from 1."""
           "{ai_pieces}".format(player_pieces=game.player_piece,
                                ai_pieces=game.ai_piece)
           )
-    game.start(player_first=player_first)
+    game.start(ai_class=MinimaxAI, player_first=player_first)
     while not game.is_game_over():
         print_state(game.state)
         print("It's your move now. Enter line and column where you'd like"
