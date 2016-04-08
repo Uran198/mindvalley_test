@@ -87,12 +87,15 @@ class Game:
     def player_piece(self):
         return self._player_piece
 
-    def get_winner(self):
+    def get_winner(self, state=None):
         """
         Returns the winner based on the game state.
         If the game state contains several winners, function may return any
         value.
         """
+        if state is None:
+            state = self.state
+
         def winner_from_line(line):
             if line.count(self._ai_piece) >= self._win_count:
                 return "ai"
@@ -100,13 +103,13 @@ class Game:
                 return "player"
             return None
 
-        for line in self._state:
+        for line in state:
             winner = winner_from_line(''.join(line))
             if winner:
                 return winner
 
         cols = defaultdict(lambda: [])
-        for line in self._state:
+        for line in state:
             for i, col in enumerate(line):
                 cols[i] += col
         for line in cols.values():
@@ -115,14 +118,14 @@ class Game:
                 return winner
 
         # Going through diagonals
-        columns = len(self._state[0])
+        columns = len(state[0])
         for offset in range(-columns, columns):
             main = [row[i+offset]
-                    for i, row in enumerate(self._state)
+                    for i, row in enumerate(state)
                     if 0 <= i+offset < columns
                     ]
             counter = [row[-i+offset]
-                       for i, row in enumerate(self._state)
+                       for i, row in enumerate(state)
                        if 0 <= -i+offset < columns
                        ]
             winner = winner_from_line(''.join(main))

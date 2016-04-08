@@ -66,6 +66,42 @@ class GameTest(unittest.TestCase):
             self.game.make_move(2, 2)
         self.assertEqual(str(ctx.exception), "Place is already taken.")
 
+    def test_get_winner_external_state(self):
+        state = ["...",
+                 "...",
+                 "..."]
+        self.assertEqual(self.game.get_winner(state), None)
+        player_winning = [
+            ["x..",
+             ".x.",
+             "..x"],
+            ["xxx",
+             "...",
+             "..."],
+            [".x.",
+             ".x.",
+             ".x."],
+        ]
+        ai_winning = [
+            ["..o",
+             ".o.",
+             "o.."],
+            ["o..",
+             ".o.",
+             "..o"],
+            ["ooo",
+             "...",
+             "..."],
+            [".o.",
+             ".o.",
+             ".o."],
+        ]
+        for state in player_winning:
+            self.assertEqual(self.game.get_winner(state), "player")
+
+        for state in ai_winning:
+            self.assertEqual(self.game.get_winner(state), "ai")
+
     def test_get_winner(self):
         self.assertEqual(self.game.get_winner(), None)
         player_winning = [
