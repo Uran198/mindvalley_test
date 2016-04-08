@@ -26,6 +26,23 @@ class Game:
                 line.append(self.empty_place)
             self._state.append(line)
 
+    @staticmethod
+    def get_next_state(state, line, column, piece):
+        """
+        Returns new state based on the move.
+        Makes no checks if the move is legal.
+        """
+        next_state = []
+        for i, row in enumerate(state):
+            new_row = ''
+            for j, val in enumerate(row):
+                if i == line and j == column:
+                    new_row += piece
+                else:
+                    new_row += val
+            next_state.append(new_row)
+        return next_state
+
     def _ai_make_move(self):
         line, column = self._ai.next_move()
         if not (0 <= line < len(self._state) and

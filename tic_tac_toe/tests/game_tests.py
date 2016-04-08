@@ -193,3 +193,10 @@ class GameTest(unittest.TestCase):
             self.game.make_move(2, 3)
         self.assertEqual(str(ctx.exception),
                          "Can't make move in winning position.")
+
+    def test_get_next_state(self):
+        state = ['...', '...', '...']
+        self.assertEqual(self.game.get_next_state(state, 0, 1, 'o'),
+                         ['.o.', '...', '...'])
+        self.assertEqual(state,
+                         ['...', '...', '...'])
