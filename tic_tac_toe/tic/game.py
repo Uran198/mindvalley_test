@@ -75,6 +75,14 @@ class Game:
     def empty_place(self):
         return '.'
 
+    @property
+    def ai_piece(self):
+        return self._ai_piece
+
+    @property
+    def player_piece(self):
+        return self._player_piece
+
     def get_winner(self):
         """
         Returns the winner based on the game state.

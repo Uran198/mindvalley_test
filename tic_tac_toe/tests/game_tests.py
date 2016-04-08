@@ -18,6 +18,12 @@ class GameTest(unittest.TestCase):
         self.game = game.Game(lines=3, columns=3)
         self.game.start(ai_class=self.ai_class, player_first=True)
 
+    def test_ai_piece(self):
+        self.assertEqual(self.game.ai_piece, 'o')
+
+    def test_player_piece(self):
+        self.assertEqual(self.game.player_piece, 'x')
+
     def test_empty_place(self):
         self.assertEqual(self.game.empty_place, '.')
 
