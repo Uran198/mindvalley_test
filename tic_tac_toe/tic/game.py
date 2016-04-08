@@ -1,6 +1,7 @@
 from collections import defaultdict
 
-from .exceptions import IllegalMoveError, ImpossibleGameError
+from .ai import get_default_ai
+from .exceptions import IllegalMoveError, ImpossibleGameError, InvalidAIError
 
 
 class Game:
@@ -16,6 +17,7 @@ class Game:
             raise ImpossibleGameError
         self._player_piece = "x"
         self._ai_piece = "o"
+        self._ai = None
         self._win_count = win_count
         self._state = []
         for _ in range(lines):
@@ -23,6 +25,30 @@ class Game:
             for _ in range(columns):
                 line.append(".")
             self._state.append(line)
+
+    def _ai_make_move(self):
+        line, column = self._ai.next_move()
+        if not (0 <= line < len(self._state) and
+                0 <= column < len(self._state[0])):
+            raise InvalidAIError("AI tried to make a move outside the board.")
+        if self._state[line][column] != '.':
+            msg = "AI tried to place piece in already occupied place."
+            raise InvalidAIError(msg)
+
+        self._state[line][column] = self._ai_piece
+
+    def start(self, ai_class=None, player_first=False):
+        for i, row in enumerate(self._state):
+            for j, _ in enumerate(row):
+                self._state[i][j] = '.'
+
+        if ai_class:
+            self._ai = ai_class(self, self._ai_piece)
+        else:
+            self._ai = get_default_ai(self, self._ai_piece)
+
+        if not player_first:
+            self._ai_make_move()
 
     def make_move(self, line, column):
         """
@@ -39,6 +65,7 @@ class Game:
             raise IllegalMoveError("Place is already taken.")
 
         self._state[line][column] = self._player_piece
+        self._ai_make_move()
 
     @property
     def state(self):
