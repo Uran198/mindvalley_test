@@ -20,3 +20,10 @@ class InvalidAIError(ValueError):
     Raised when an AI tries to make illegal move.
     """
     pass
+
+
+class NoLegalMoveError(ValueError):
+    """
+    Raised by AI when there are no legal moves left.
+    """
+    pass

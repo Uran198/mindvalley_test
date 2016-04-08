@@ -18,6 +18,9 @@ class GameTest(unittest.TestCase):
         self.game = game.Game(lines=3, columns=3)
         self.game.start(ai_class=self.ai_class, player_first=True)
 
+    def test_empty_place(self):
+        self.assertEqual(self.game.empty_place, '.')
+
     def test_creating_invalid_game(self):
         self.assertRaises(ImpossibleGameError, game.Game, 0, 10)
         self.assertRaises(ImpossibleGameError, game.Game, 10, 0)
