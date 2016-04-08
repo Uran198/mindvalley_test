@@ -20,9 +20,9 @@ class BasicAITest(unittest.TestCase):
     def setUp(self):
         self.game = mock.Mock()
         self.game.state = [
-            ['.', '.', '.'],
-            ['.', '.', '.'],
-            ['.', '.', '.'],
+            '...',
+            '...',
+            '...',
         ]
 
         self.ai_class = ai.BasicAI
@@ -42,9 +42,9 @@ class SimpleAITest(unittest.TestCase):
     def setUp(self):
         self.game = mock.Mock()
         self.game.state = [
-            ['.', '.', '.'],
-            ['.', '.', '.'],
-            ['.', '.', '.'],
+            '...',
+            '...',
+            '...',
         ]
         self.game.empty_place = '.'
 
