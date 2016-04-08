@@ -144,3 +144,16 @@ class GameTest(unittest.TestCase):
         self.game.make_move(1, 2)
         self.ai_class.assert_called_once_with(self.game, 'o')
         self.ai.next_move.assert_called_once_with()
+
+    def test_make_winning_move(self):
+        self.game._state = [['x', 'x', '.'], ['.', '.', '.'], ['.', '.', '.']]
+        self.ai.next_move.reset_mock()
+        self.game.make_move(1, 3)
+        self.assertEqual(self.ai.next_move.called, False)
+
+    def test_make_move_after_winning(self):
+        self.game._state = [['o', 'o', 'o'], ['.', '.', '.'], ['.', '.', '.']]
+        with self.assertRaises(IllegalMoveError) as ctx:
+            self.game.make_move(2, 3)
+        self.assertEqual(str(ctx.exception),
+                         "Can't make move in winning position.")
