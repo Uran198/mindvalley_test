@@ -32,10 +32,7 @@ you want to place your piece, counting from 1."""
                                ai_pieces=game.ai_piece)
           )
     game.start(player_first=player_first)
-    while True:
-        winner = game.get_winner()
-        if winner:
-            break
+    while not game.is_game_over():
         print_state(game.state)
         print("It's your move now. Enter line and column where you'd like"
               "to put your piece, counting from 1.")
@@ -53,6 +50,10 @@ you want to place your piece, counting from 1."""
                 print(e)
                 continue
             break
+    winner = game.get_winner()
     print_state(game.state)
-    print("And we have a winner")
-    print(winner, "won!")
+    if winner is not None:
+        print("And we have a winner")
+        print(winner, "won!")
+    else:
+        print("It's a draw!")
