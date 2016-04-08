@@ -109,10 +109,11 @@ class GameTest(unittest.TestCase):
         self.ai_class.assert_called_once_with(self.game, 'o')
         self.ai.next_move.assert_called_once_with()
 
+        self.ai.next_move.reset_mock()
         self.game.start(ai_class=self.ai_class, player_first=True)
         self.assertListEqual(self.game.state, ['...', '...', '...'])
         self.ai_class.assert_called_with(self.game, 'o')
-        self.ai.next_move.assert_has_calls([])
+        self.assertEqual(self.ai.next_move.called, False)
 
     @mock.patch('tic.game.get_default_ai', create=True)
     def test_start_no_ai(self, get_default_ai):
