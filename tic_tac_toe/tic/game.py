@@ -118,27 +118,17 @@ class Game:
         """
         if state is None:
             state = self.state
-
-        def winner_from_line(line):
-            if line.count(self._ai_piece) >= self._win_count:
-                return "ai"
-            if line.count(self._player_piece) >= self._win_count:
-                return "player"
-            return None
+        lines = []
 
         for line in state:
-            winner = winner_from_line(''.join(line))
-            if winner:
-                return winner
+            lines.append(line)
 
         cols = defaultdict(lambda: [])
         for line in state:
             for i, col in enumerate(line):
                 cols[i] += col
         for line in cols.values():
-            winner = winner_from_line(''.join(line))
-            if winner:
-                return winner
+            lines.append(line)
 
         # Going through diagonals
         columns = len(state[0])
@@ -151,10 +141,25 @@ class Game:
                        for i, row in enumerate(state)
                        if 0 <= -i+offset < columns
                        ]
-            winner = winner_from_line(''.join(main))
-            if not winner:
-                winner = winner_from_line(''.join(counter))
-            if winner:
-                return winner
+            if len(main) >= self._win_count:
+                lines.append(''.join(main))
+            if len(counter) >= self._win_count:
+                lines.append(''.join(counter))
 
+        for line in lines:
+            count = 1
+            cur_piece = line[0]
+            for piece in line[1:]:
+                if piece == cur_piece:
+                    count += 1
+                    continue
+                if cur_piece != self.empty_place and count >= self._win_count:
+                    break
+                count = 1
+                cur_piece = piece
+            if count >= self._win_count:
+                if cur_piece == self._ai_piece:
+                    return "ai"
+                elif cur_piece == self._player_piece:
+                    return "player"
         return None

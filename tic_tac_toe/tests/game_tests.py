@@ -131,11 +131,28 @@ class GameTest(unittest.TestCase):
         ]
         for state in player_winning:
             self.game._state = state
-            self.assertEqual(self.game.get_winner(), "player")
+            self.assertEqual(self.game.get_winner(), "player", state)
 
         for state in ai_winning:
             self.game._state = state
             self.assertEqual(self.game.get_winner(), "ai", state)
+
+    def test_get_winner_not_straight_line(self):
+        state = ["xox", "...", "..."]
+        self.game = game.Game(3, 3, win_count=2)
+        self.assertEqual(self.game.get_winner(state), None)
+
+    def test_get_winner_no_winner(self):
+        states = [
+            ["xox",
+             "oxo",
+             "oxo"],
+            ["xoo",
+             "oxx",
+             "xoo"]
+        ]
+        for state in states:
+            self.assertEqual(self.game.get_winner(state), None)
 
     def test_start(self):
         self.ai_class.reset_mock()
