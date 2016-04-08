@@ -192,7 +192,7 @@ class GameTest(unittest.TestCase):
         with self.assertRaises(IllegalMoveError) as ctx:
             self.game.make_move(2, 3)
         self.assertEqual(str(ctx.exception),
-                         "Can't make move in winning position.")
+                         "Can't make move in end of game position.")
 
     def test_get_next_state(self):
         state = ['...', '...', '...']
@@ -200,3 +200,11 @@ class GameTest(unittest.TestCase):
                          ['.o.', '...', '...'])
         self.assertEqual(state,
                          ['...', '...', '...'])
+
+    def test_game_over(self):
+        state = ['...', '...', '...']
+        self.assertEqual(self.game.is_game_over(state), False)
+        state = ['xxx', '...', '...']
+        self.assertEqual(self.game.is_game_over(state), True)
+        state = ['xoo', 'oxx', 'xoo']
+        self.assertEqual(self.game.is_game_over(state), True)

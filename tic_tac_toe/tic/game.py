@@ -73,8 +73,8 @@ class Game:
         Throws IllegalMoveError when place is already taken or the move is
         outside of the board.
         """
-        if self.get_winner():
-            raise IllegalMoveError("Can't make move in winning position.")
+        if self.is_game_over():
+            raise IllegalMoveError("Can't make move in end of game position.")
         line -= 1
         column -= 1
         if not (0 <= line < len(self._state) and
@@ -85,7 +85,7 @@ class Game:
 
         self._state[line][column] = self._player_piece
 
-        if self.get_winner() is None:
+        if not self.is_game_over():
             self._ai_make_move()
 
     @property
@@ -103,6 +103,12 @@ class Game:
     @property
     def player_piece(self):
         return self._player_piece
+
+    def is_game_over(self, state=None):
+        if state is None:
+            state = self.state
+        return (self.get_winner(state) is not None or
+                ''.join(state).count(self.empty_place) == 0)
 
     def get_winner(self, state=None):
         """
