@@ -24,6 +24,9 @@ class GameTest(unittest.TestCase):
     def test_player_piece(self):
         self.assertEqual(self.game.player_piece, 'x')
 
+    def test_win_count(self):
+        self.assertEqual(self.game.win_count, 3)
+
     def test_empty_place(self):
         self.assertEqual(self.game.empty_place, '.')
 

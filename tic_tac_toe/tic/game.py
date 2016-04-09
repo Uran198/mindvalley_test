@@ -104,6 +104,10 @@ class Game:
     def player_piece(self):
         return self._player_piece
 
+    @property
+    def win_count(self):
+        return self._win_count
+
     def is_game_over(self, state=None):
         if state is None:
             state = self.state
