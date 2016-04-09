@@ -154,6 +154,19 @@ class GameTest(unittest.TestCase):
         for state in states:
             self.assertEqual(self.game.get_winner(state), None)
 
+    def test_possible_winning_lines(self):
+        state = ["abc",
+                 "efg",
+                 "opr"]
+        lines = ["abc", "efg", "opr", "aeo", "bfp", "cgr", "afr", "cfo"]
+        self.assertListEqual(
+            list(self.game.possible_winning_lines(state)), lines)
+
+        self.game._win_count = 2
+        lines += ["bg", "ep", "be", "gp"]
+        self.assertSetEqual(
+            set(self.game.possible_winning_lines(state)), set(lines))
+
     def test_start(self):
         self.ai_class.reset_mock()
         self.ai.next_move.return_value = (2, 2)

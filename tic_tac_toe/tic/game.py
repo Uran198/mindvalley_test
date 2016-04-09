@@ -110,29 +110,20 @@ class Game:
         return (self.get_winner(state) is not None or
                 ''.join(state).count(self.empty_place) == 0)
 
-    def get_winner(self, state=None):
-        """
-        Returns the winner based on the game state.
-        If the game state contains several winners, function may return any
-        value.
-        """
-        if state is None:
-            state = self.state
-        lines = []
-
+    def possible_winning_lines(self, state):
         for line in state:
-            lines.append(line)
+            yield line
 
-        cols = defaultdict(lambda: [])
+        cols = defaultdict(lambda: "")
         for line in state:
             for i, col in enumerate(line):
                 cols[i] += col
         for line in cols.values():
-            lines.append(line)
+            yield line
 
         # Going through diagonals
         columns = len(state[0])
-        for offset in range(-columns, columns):
+        for offset in range(-2*columns, 2*columns):
             main = [row[i+offset]
                     for i, row in enumerate(state)
                     if 0 <= i+offset < columns
@@ -142,11 +133,20 @@ class Game:
                        if 0 <= -i+offset < columns
                        ]
             if len(main) >= self._win_count:
-                lines.append(''.join(main))
+                yield ''.join(main)
             if len(counter) >= self._win_count:
-                lines.append(''.join(counter))
+                yield ''.join(counter)
 
-        for line in lines:
+    def get_winner(self, state=None):
+        """
+        Returns the winner based on the game state.
+        If the game state contains several winners, function may return any
+        value.
+        """
+        if state is None:
+            state = self.state
+
+        for line in self.possible_winning_lines(state):
             count = 1
             cur_piece = line[0]
             for piece in line[1:]:
