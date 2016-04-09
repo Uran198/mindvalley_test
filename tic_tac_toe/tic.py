@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import time
 import argparse
 
 from tic.game import Game
@@ -32,10 +33,14 @@ you want to place your piece, counting from 1."""
           "{ai_pieces}".format(player_pieces=game.player_piece,
                                ai_pieces=game.ai_piece)
           )
+    start_time = time.time()
     game.start(ai_class=MinimaxAI, player_first=player_first)
+    end_time = time.time()
+    if not player_first:
+        print("AI thought for {} seconds.".format(end_time - start_time))
     while not game.is_game_over():
         print_state(game.state)
-        print("It's your move now. Enter line and column where you'd like"
+        print("It's your move now. Enter line and column where you'd like "
               "to put your piece, counting from 1.")
         while True:
             try:
@@ -44,12 +49,15 @@ you want to place your piece, counting from 1."""
                 print("Couldn't parse your input :(")
                 print(e)
                 continue
+            start_time = time.time()
             try:
                 game.make_move(line, column)
             except IllegalMoveError as e:
                 print("You've tried to make an illegal move.")
                 print(e)
                 continue
+            end_time = time.time()
+            print("AI thought for {} seconds.".format(end_time - start_time))
             break
     winner = game.get_winner()
     print_state(game.state)
