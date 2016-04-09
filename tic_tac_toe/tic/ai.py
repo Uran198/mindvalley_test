@@ -1,3 +1,5 @@
+from .utils import StatesCache
+
 from .exceptions import NoLegalMoveError
 
 
@@ -26,33 +28,40 @@ class SimpleAI(BasicAI):
 
 
 class MinimaxAI(BasicAI):
+    max_score = 10000
+    min_score = -10000
 
     def __init__(self, *args, **kwargs):
-        self._cache = {}
+        self._cache = StatesCache()
         super(MinimaxAI, self).__init__(*args, **kwargs)
 
     def next_move(self):
         if ''.join(self._game.state).count(self._game.empty_place) == 0:
             raise NoLegalMoveError("AI found no legal move to make.")
-        score, move = self.minimax(self._game.state, True)
+        self._cache = StatesCache()
+        score, move = self.minimax(self._game.state, True, 0)
+        print("Score, Move", score, move)
         return move
 
-    def score(self, state):
+    def score(self, state, depth):
         winner = self._game.get_winner(state)
         if winner is None:
             score = 0
         elif winner == "ai":
-            score = 1
+            score = self.max_score - depth
         else:
-            score = -1
+            score = self.min_score + depth
         return score
 
-    def minimax(self, state, is_max):
+    def minimax(self, state, is_max, depth):
+        depth += 1
         if self._game.is_game_over(state):
-            return (self.score(state), (-1, -1))
+            return (self.score(state, depth), (-1, -1))
 
-        if (''.join(state), is_max) in self._cache:
-            return self._cache[(''.join(state), is_max)]
+        try:
+            return self._cache[(state, is_max)]
+        except KeyError:
+            pass
 
         scoremoves = []
 
@@ -62,13 +71,12 @@ class MinimaxAI(BasicAI):
                     continue
                 piece = self._pieces if is_max else self._game.player_piece
                 next_state = self._game.get_next_state(state, i, j, piece)
-                scoremoves.append(
-                    (self.minimax(next_state, not is_max)[0], (i, j))
-                )
+                sm = (self.minimax(next_state, not is_max, depth)[0], (i, j))
+                scoremoves.append(sm)
 
         if is_max:
             result = max(scoremoves, key=lambda x: x[0])
         else:
             result = min(scoremoves, key=lambda x: x[0])
-        self._cache[(''.join(state), is_max)] = result
+        self._cache[(state, is_max)] = result
         return result

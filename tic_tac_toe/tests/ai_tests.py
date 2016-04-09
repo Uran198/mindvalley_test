@@ -74,11 +74,11 @@ class MinimaxAITest(unittest.TestCase):
     def test_score(self):
         self.game.get_winner = mock.Mock()
         self.game.get_winner.return_value = "ai"
-        self.assertEqual(self.ai.score("fake"), 1)
+        self.assertEqual(self.ai.score("fake", 0), self.ai.max_score)
         self.game.get_winner.return_value = "player"
-        self.assertEqual(self.ai.score("fake"), -1)
+        self.assertEqual(self.ai.score("fake", 0), self.ai.min_score)
         self.game.get_winner.return_value = None
-        self.assertEqual(self.ai.score("fake"), 0)
+        self.assertEqual(self.ai.score("fake", 0), 0)
 
     def test_next_move(self):
         from tic.game import Game
