@@ -147,6 +147,28 @@ class HeuristicAITest(unittest.TestCase):
         score = self.ai.score(depth=0, ai_move=False, state=self.game.state)
         self.assertEqual(score, 2)
 
+    def test_minimax_game_over(self):
+        state = [
+            '....x',
+            '.xox.',
+            '.ox..',
+            '.x.o.',
+            'o....',
+        ]
+        with mock.patch('tic.ai.HeuristicAI.score') as score:
+            self.ai.minimax(state, True, 0)
+        score.assert_called_with(state, True, 1)
+
+    def test_minimax_too_big_depth(self):
+        with mock.patch('tic.ai.HeuristicAI.score') as score:
+            self.ai.minimax(self.game.state, True, self.ai.max_depth)
+        score.assert_called_with(self.game.state, True, self.ai.max_depth+1)
+
+    def test_minimax(self):
+        with mock.patch('tic.ai.MinimaxAI.minimax') as minimax:
+            self.ai.minimax(self.game.state, True, 0)
+        minimax.assert_called_with(self.game.state, True, 1)
+
 
 class GetHeuristicAIClassTest(unittest.TestCase):
 
