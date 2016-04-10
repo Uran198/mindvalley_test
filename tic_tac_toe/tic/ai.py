@@ -46,7 +46,6 @@ class MinimaxAI(BasicAI):
             raise NoLegalMoveError("AI found no legal move to make.")
         self._cache = StatesCache()
         score, move = self.minimax(self._game.state, True, 0)
-        print("Score, Move", score, move)
         return move
 
     def score(self, state, depth):
