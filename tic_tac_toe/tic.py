@@ -3,7 +3,7 @@ import time
 import argparse
 
 from tic.game import Game
-from tic.ai import MinimaxAI
+from tic.ai import MinimaxAI, get_heuristic_ai_class
 from tic.exceptions import IllegalMoveError
 
 
@@ -34,6 +34,12 @@ you want to place your piece, counting from 1."""
         exit(1)
 
     game = Game(args.lines, args.columns, args.win_count)
+
+    if args.lines*args.columns <= 12:
+        ai_class = MinimaxAI
+    else:
+        ai_class = get_heuristic_ai_class(3)
+
     while True:
         choice = input("Would you like to make first move? (Y/n)")
         choice = choice.lower()
@@ -45,7 +51,7 @@ you want to place your piece, counting from 1."""
                                ai_pieces=game.ai_piece)
           )
     start_time = time.time()
-    game.start(ai_class=MinimaxAI, player_first=player_first)
+    game.start(ai_class=ai_class, player_first=player_first)
     end_time = time.time()
     if not player_first:
         print("AI thought for {} seconds.".format(end_time - start_time))
