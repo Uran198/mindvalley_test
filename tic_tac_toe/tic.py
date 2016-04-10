@@ -20,9 +20,20 @@ Displays current position of the board after each move. To make a move, you
 should type a pair of numbers, which will represent a line and a column, where
 you want to place your piece, counting from 1."""
     )
-    parser.parse_args()
+    parser.add_argument('--lines', '-l', dest='lines', type=int,
+                        default=3, help="number of lines (default 3)")
+    parser.add_argument('--columns', '-c', dest='columns', type=int,
+                        default=3, help="number of columns (default 3)")
+    parser.add_argument('--win', '-w', dest='win_count', type=int,
+                        default=3, help="number of pieces on a straight line "
+                                        "required to win (default 3)")
+    args = parser.parse_args()
 
-    game = Game(3, 3)
+    if not (args.lines > 0 and args.columns > 0 and args.win_count > 0):
+        print("Neither one of the parameters can be <= 0.")
+        exit(1)
+
+    game = Game(args.lines, args.columns, args.win_count)
     while True:
         choice = input("Would you like to make first move? (Y/n)")
         choice = choice.lower()
