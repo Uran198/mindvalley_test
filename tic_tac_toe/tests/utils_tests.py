@@ -94,3 +94,23 @@ class RotateTest(TestCase):
     def test_back_rotate_2x2(self):
         state = ["ca", "db"]
         self.assertListEqual(utils.back_rotate(state), ["ab", "cd"])
+
+
+class ShringTest(TestCase):
+
+    def test_shrink_2_types(self):
+        line = "....xx"
+        self.assertListEqual(utils.shrink(line), [('.', 4), ('x', 2)])
+
+    def test_shrink_1_types(self):
+        line = "...."
+        self.assertListEqual(utils.shrink(line), [('.', 4)])
+
+    def test_shrink_xox_pattern(self):
+        line = "xoxoxoxo"
+        expected = [('x', 1), ('o', 1), ('x', 1), ('o', 1), ('x', 1), ('o', 1),
+                    ('x', 1), ('o', 1)]
+        self.assertListEqual(utils.shrink(line), expected)
+
+    def test_empty_line(self):
+        self.assertRaises(IndexError, utils.shrink, '')

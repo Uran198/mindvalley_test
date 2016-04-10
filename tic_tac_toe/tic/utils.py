@@ -1,5 +1,20 @@
 
 
+def shrink(line):
+    count = 1
+    cur = line[0]
+    result = []
+    for x in line[1:]:
+        if x == cur:
+            count += 1
+        else:
+            result.append((cur, count))
+            cur = x
+            count = 1
+    result.append((cur, count))
+    return result
+
+
 def rotate(state):
     new_state = []
     columns = len(state[0])
