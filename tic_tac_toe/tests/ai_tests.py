@@ -146,3 +146,14 @@ class HeuristicAITest(unittest.TestCase):
         self.assertEqual(score, 2002)
         score = self.ai.score(depth=0, ai_move=False, state=self.game.state)
         self.assertEqual(score, 2)
+
+
+class GetHeuristicAIClassTest(unittest.TestCase):
+
+    def test_get_heuristic_ai_class(self):
+        ai_class = ai.get_heuristic_ai_class(20)
+        self.assertEqual(ai_class.max_depth, 20)
+        ai_class = ai.get_heuristic_ai_class(7)
+        self.assertEqual(ai_class.max_depth, 7)
+        self.ai = ai_class(mock.MagicMock(), 'o')
+        self.assertEqual(self.ai.max_depth, 7)

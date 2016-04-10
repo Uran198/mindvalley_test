@@ -7,6 +7,12 @@ def get_default_ai(game, ai_pieces):
     return SimpleAI(game, ai_pieces)
 
 
+def get_heuristic_ai_class(depth):
+    class HeuristicAIDepth(HeuristicAI):
+        max_depth = depth
+    return HeuristicAIDepth
+
+
 class BasicAI:
 
     def __init__(self, game, pieces):
