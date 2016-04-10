@@ -157,17 +157,17 @@ class HeuristicAITest(unittest.TestCase):
         ]
         with mock.patch('tic.ai.HeuristicAI.score') as score:
             self.ai.minimax(state, True, 0)
-        score.assert_called_with(state, True, 1)
+        score.assert_called_with(state, True, 0)
 
     def test_minimax_too_big_depth(self):
         with mock.patch('tic.ai.HeuristicAI.score') as score:
             self.ai.minimax(self.game.state, True, self.ai.max_depth)
-        score.assert_called_with(self.game.state, True, self.ai.max_depth+1)
+        score.assert_called_with(self.game.state, True, self.ai.max_depth)
 
     def test_minimax(self):
         with mock.patch('tic.ai.MinimaxAI.minimax') as minimax:
             self.ai.minimax(self.game.state, True, 0)
-        minimax.assert_called_with(self.game.state, True, 1)
+        minimax.assert_called_with(self.game.state, True, 0)
 
 
 class GetHeuristicAIClassTest(unittest.TestCase):
