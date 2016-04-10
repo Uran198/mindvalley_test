@@ -59,13 +59,13 @@ class MinimaxAI(BasicAI):
             score = self.min_score + depth
         return score
 
-    def minimax(self, state, is_max, depth):
+    def minimax(self, state, ai_move, depth):
         depth += 1
         if self._game.is_game_over(state):
             return (self.score(state, depth), (-1, -1))
 
         try:
-            return self._cache[(state, is_max)]
+            return self._cache[(state, ai_move)]
         except KeyError:
             pass
 
@@ -75,16 +75,16 @@ class MinimaxAI(BasicAI):
             for j, val in enumerate(row):
                 if val != self._game.empty_place:
                     continue
-                piece = self._pieces if is_max else self._game.player_piece
+                piece = self._pieces if ai_move else self._game.player_piece
                 next_state = self._game.get_next_state(state, i, j, piece)
-                sm = (self.minimax(next_state, not is_max, depth)[0], (i, j))
+                sm = (self.minimax(next_state, not ai_move, depth)[0], (i, j))
                 scoremoves.append(sm)
 
-        if is_max:
+        if ai_move:
             result = max(scoremoves, key=lambda x: x[0])
         else:
             result = min(scoremoves, key=lambda x: x[0])
-        self._cache[(state, is_max)] = result
+        self._cache[(state, ai_move)] = result
         return result
 
 
@@ -147,7 +147,7 @@ class HeuristicAI(MinimaxAI):
         self._score_cache[(state, ai_move)] = score
         return score
 
-    def minimax(self, state, is_max, depth):
+    def minimax(self, state, ai_move, depth):
         if self._game.is_game_over(state) or depth >= self.max_depth:
-            return (self.score(state, is_max, depth), (-1, -1))
-        return super(HeuristicAI, self).minimax(state, is_max, depth)
+            return (self.score(state, ai_move, depth), (-1, -1))
+        return super(HeuristicAI, self).minimax(state, ai_move, depth)
