@@ -83,9 +83,14 @@ class MinimaxAI(BasicAI):
 
 
 class HeuristicAI(MinimaxAI):
+    """
+    Makes move based on heuristic positions evaluation. With the value of
+    max_depth set to 8 thinks approximately for 10 seconds on the move with 5x5
+    board and 4 in a row.
+    """
+    max_depth = 8
 
     def __init__(self, *args, **kwargs):
-        self.max_depth = 4
         self._score_cache = StatesCache()
         super(HeuristicAI, self).__init__(*args, **kwargs)
 
