@@ -80,6 +80,6 @@ you want to place your piece, counting from 1."""
     print_state(game.state)
     if winner is not None:
         print("And we have a winner")
-        print(winner, "won!")
+        print(winner.upper(), "won!")
     else:
         print("It's a draw!")
