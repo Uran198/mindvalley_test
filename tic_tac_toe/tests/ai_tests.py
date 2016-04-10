@@ -2,6 +2,7 @@ import unittest
 from unittest import mock
 
 from tic import ai
+from tic.game import Game
 from tic.exceptions import NoLegalMoveError
 
 
@@ -81,7 +82,6 @@ class MinimaxAITest(unittest.TestCase):
         self.assertEqual(self.ai.score("fake", 0), 0)
 
     def test_next_move(self):
-        from tic.game import Game
         self.game = Game(3, 3)
         self.ai = ai.MinimaxAI(self.game, 'o')
         self.assertIn(self.ai.next_move(),
@@ -100,3 +100,49 @@ class MinimaxAITest(unittest.TestCase):
         ]
         self.assertIn(self.ai.next_move(),
                       [(1, 1), (2, 0), (1, 0)])
+
+
+class HeuristicAITest(unittest.TestCase):
+
+    def setUp(self):
+        self.game = Game(5, 6, 4)
+        self.ai = ai.HeuristicAI(self.game, 'o')
+
+    def test_score_game_over(self):
+        state = [
+            '....x',
+            '.xox.',
+            '.ox..',
+            '.x.o.',
+            'o....',
+        ]
+        score = self.ai.score(depth=0, ai_move=False, state=state)
+        self.assertEqual(score, -10000)
+        score = self.ai.score(depth=0, ai_move=True, state=state)
+        self.assertEqual(score, -10000)
+
+    def test_score_3_with_open_ends(self):
+        self.game._state = [
+            ['.', '.', '.', '.', '.'],
+            ['.', 'x', 'o', 'x', '.'],
+            ['.', 'o', 'x', '.', '.'],
+            ['.', 'x', '.', 'o', '.'],
+            ['.', '.', '.', '.', '.'],
+        ]
+        score = self.ai.score(depth=0, ai_move=True, state=self.game.state)
+        self.assertEqual(score, -2998)
+        score = self.ai.score(depth=0, ai_move=False, state=self.game.state)
+        self.assertEqual(score, -2998)
+
+    def test_score_one_better_state(self):
+        self.game._state = [
+            ['.', '.', '.', '.', '.'],
+            ['.', 'x', '.', 'x', '.'],
+            ['.', 'o', 'o', '.', '.'],
+            ['.', 'o', 'x', '.', '.'],
+            ['.', '.', '.', '.', '.'],
+        ]
+        score = self.ai.score(depth=0, ai_move=True, state=self.game.state)
+        self.assertEqual(score, 2002)
+        score = self.ai.score(depth=0, ai_move=False, state=self.game.state)
+        self.assertEqual(score, 2)
