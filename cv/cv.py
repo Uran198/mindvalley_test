@@ -41,7 +41,7 @@ def escape_data(data):
 
 
 if __name__ == "__main__":
-    with open("cv.json") as fd:
+    with open("assets/cv.json") as fd:
         data = escape_data(json.load(fd))
     result = """
 <!DOCTYPE HTML>
