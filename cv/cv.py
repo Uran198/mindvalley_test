@@ -2,6 +2,8 @@
 import json
 from html import escape
 
+from jinja2.utils import urlize
+
 
 def data_to_html(data, html_class=None):
     """
@@ -40,9 +42,20 @@ def escape_data(data):
     return escape(data)
 
 
+def urlize_data(data):
+    """
+    Returns new data with all values urlized.
+    """
+    if isinstance(data, list):
+        return [urlize_data(value) for value in data]
+    if isinstance(data, dict):
+        return {key: urlize_data(value) for key, value in data.items()}
+    return urlize(data)
+
+
 if __name__ == "__main__":
     with open("assets/cv.json") as fd:
-        data = escape_data(json.load(fd))
+        data = urlize_data(escape_data(json.load(fd)))
     result = """
 <!DOCTYPE HTML>
 <html>

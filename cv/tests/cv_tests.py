@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from cv import data_to_html, escape_data
+from cv import data_to_html, escape_data, urlize_data
 
 
 class DataToHtmlTests(TestCase):
@@ -86,3 +86,24 @@ class EscapeDataTest(TestCase):
         data = {'cls"': {'"': [{'>': '<scr"'}]}}
         expected = {'cls&quot;': {'&quot;': [{'&gt;': '&lt;scr&quot;'}]}}
         self.assertEqual(escape_data(data), expected)
+
+
+class UrlizeDataTest(TestCase):
+
+    def test_raw(self):
+        data = 'github https://github.com/'
+        expected = ('github <a href="https://github.com/">'
+                    'https://github.com/</a>')
+        self.assertEqual(urlize_data(data), expected)
+
+    def test_list(self):
+        data = ['github https://github.com/']
+        expected = [('github <a href="https://github.com/">'
+                    'https://github.com/</a>')]
+        self.assertEqual(urlize_data(data), expected)
+
+    def test_dict(self):
+        data = {'github': 'https://github.com/'}
+        expected = {'github': ('<a href="https://github.com/">'
+                               'https://github.com/</a>')}
+        self.assertEqual(urlize_data(data), expected)
