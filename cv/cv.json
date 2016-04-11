@@ -1,0 +1,96 @@
+{
+    "name": "Attila Tovt",
+    "emails": ["attila.tovt42@gmail.com", "uran198@gmail.com"],
+    "document": {
+        "employment": [
+            {
+                "company": "Ubisoft",
+                "period": "January 2016 - February 2016",
+                "position": "Intern",
+                "location": "Kyiv, Ukraine",
+                "points": [
+                    "Passed the course of lectures on basic and advanced C++ topics",
+                    "Implemented 2D shooter game in the team of four"
+                ]
+            }
+        ],
+        "projects": [
+            {
+                "name": "Rubik's cube",
+                "description": "3D visualization of Rubik's cube with intuitive mouse controls. Automatic solver of the cube in less than 21 moves. Using C# with OpenTK for visualization."
+            },
+            {
+                "name": "Med project",
+                "description": "Open source project for free medical consultations. Built with Django and Bootstrap. Deployed on Digital Ocean."
+            },
+            {
+                "name": "Codeforces helper script",
+                "description": "Script on Ruby for fast retrieval of problem sample tests. (Codeforces is a platform for programming contests)"
+            },
+            {
+                "name": "Stock price forecasting",
+                "description": "Script on Python for stock price forecasting based on determining repeating patterns. 53% of successful deals."
+            }
+        ],
+        "open source": [
+            {
+                "name": "coala",
+                "description": "Easy to use COde AnaLysis Application. Worked on different areas. My coala commits (https://github.com/coala-analyzer/coala/commits/master?author=Uran198), coala-bears commits (https://github.com/coala-analyzer/coala-bears/commits/master?author=Uran198), issues opened (https://github.com/issues?utf8=%E2%9C%93&q=is%3Aissue+author%3AUran198+user%3Acoala-analyzer+)."
+            },
+            {
+                "name": "django",
+                "description": "Worked on minor fetures and bug fixes. My commits (https://github.com/django/django/commits/master?author=Uran198)."
+            }
+        ],
+        "qualifications": [
+            {
+                "name": "Computer Languages",
+                "description": "Python, C++, Ruby, SQL, JavaScript, HTML, CSS"
+            },
+            {
+                "name": "Frameworks & Libraries",
+                "description": "Django, jQuery, Pandas"
+            },
+            {
+                "name": "Tools",
+                "description": "Git, Vim, Linux"
+            },
+            {
+                "name": "Theoretical knowledge",
+                "description": "Algorithms and Data Structures, OOP & OOD"
+            }
+        ],
+        "education": [
+            {
+                "school": "Taras Shevchenko National University of Kyiv",
+                "graduation": "Summer 2015",
+                "degree": "B. S. in Applied Mathematics"
+            },
+            {
+                "school": "Taras Shevchenko National University of Kyiv",
+                "graduation": "Expected Summer 2017",
+                "degree": "M. S. in Applied Mathematics"
+            }
+        ],
+        "links": [
+            {
+                "name": "Github",
+                "url": "https://github.com/Uran198"
+            },
+            {
+                "name": "Topcoder",
+                "description": "programming algorithmic contests",
+                "url": "https://www.topcoder.com/members/fine_plain/"
+            },
+            {
+                "name": "Codeforces",
+                "description": "programming algorithmic contests",
+                "url": "http://codeforces.com/profile/plain"
+            },
+            {
+                "name": "Stackoverflow",
+                "url": "http://stackoverflow.com/users/3546950/attila"
+            }
+        ]
+    }
+}
