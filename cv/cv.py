@@ -49,6 +49,7 @@ if __name__ == "__main__":
   <head>
     <title>{title}</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/main.css">
   </head>
   <body>
   {body}
