@@ -1,6 +1,15 @@
 # mindvalley_test
 Technical assignment for mindvalley
 
+Results
+-------
+
+1. The project is located in the `cv` subdirectory. Created script to convert JSON into standalone html file.
+   You can see the conversation result of my own CV [here](http://uran198.github.io/mindvalley_test/).
+
+2. Used minimax algorithm for 3x3 board and depth based minimax with heuristic score based on position
+   for higher dimensions. The project is located in the `tic_tac_toe` subdirectory. The game only has CLI interface.
+
 Statement
 ---------
 
