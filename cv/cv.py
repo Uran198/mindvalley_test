@@ -62,13 +62,21 @@ if __name__ == "__main__":
   <head>
     <title>{title}</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="assets/main.css">
+    <style>
+    {styles}
+    </style>
   </head>
   <body>
   {body}
   </body>
 </html>
 """
+    with open("assets/main.css") as fd:
+        styles = fd.read()
     with open("result.html", 'w') as fd:
-        fd.write(result.format(title="CV", body=data_to_html(data)))
+        fd.write(result.format(
+            title="CV",
+            body=data_to_html(data),
+            styles=styles)
+        )
     print("Finished!")

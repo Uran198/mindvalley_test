@@ -4,9 +4,309 @@
   <head>
     <title>CV</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="assets/main.css">
+    <style>
+    
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.name {
+    position: absolute;
+    top: 0;
+    font-size: 3em;
+    width: 100%;
+    text-align: center;
+}
+
+.emails {
+    position: absolute;
+    top: 4.5em;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+}
+
+.emails li {
+    display: inline-block;
+    padding: 0.8em;
+}
+
+.document {
+    position: absolute;
+    top: 10em;
+}
+
+.document > * {
+    margin-top: 4.5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.document > *:before {
+    font-size: 2em;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.document .name {
+    position: relative;
+    font-size: 1em;
+    width: auto;
+    text-align: left;
+}
+
+/*
+ * EMPLOYMENT
+ */
+
+.employment:before {
+    content: "Employment";
+}
+
+.employment {
+    margin-top: 4.5em;
+    list-style: none;
+    padding: 0;
+}
+
+.employment div {
+    margin-top: 2em;
+    position: relative;
+}
+
+.employment .company {
+    position: absolute;
+    top: 2em;
+    left: 0;
+}
+
+.employment .position {
+    position: absolute;
+    top: 2em;
+    right: 0;
+}
+
+.employment .location {
+    position: absolute;
+    top: 3.3em;
+    left: 0;
+}
+
+.employment .period {
+    position: absolute;
+    top: 3.3em;
+    right: 0;
+}
+
+.employment .points {
+    padding-top: 5em;
+}
+
+/*
+ * EMPLOYMENT END
+ */
+
+/*
+ * PROJECTS
+ */
+
+.projects:before {
+    content: "Projects";
+}
+
+.projects {
+    list-style: none;
+    padding: 0;
+}
+
+.projects div {
+    position: relative;
+}
+
+.projects .name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    font-weight: 600;
+}
+
+.projects .description {
+    padding-top: 1.2em;
+}
+
+/*
+ * PROJECTS END
+ */
+
+/*
+ * OPEN SOURCE
+ */
+
+
+.open-source:before {
+    content: "Open Source";
+}
+
+.open-source {
+    list-style: none;
+    padding: 0;
+}
+
+.open-source .name {
+    width: 15%;
+    float: left;
+    font-weight: 600;
+}
+
+.open-source .description {
+    width: 85%;
+    float: right;
+}
+
+.open-source div:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*
+ * OPEN SOURCE END
+ */
+
+
+/*
+ * QUALIFICATIONS
+ */
+
+.qualifications:before {
+    content: "Qualifications";
+}
+
+.qualifications {
+    list-style: none;
+    padding: 0;
+}
+
+.qualifications .name {
+    width: 25%;
+    float: left;
+    font-weight: 600;
+}
+
+.qualifications .name:after {
+    content: ':';
+}
+
+.qualifications .description {
+    width: 75%;
+    float: right;
+    padding-left: 1em;
+}
+
+.qualifications div:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*
+ * QUALIFICATIONS END
+ */
+
+/*
+ * EDUCATION
+ */
+
+.education:before {
+    content: "Education";
+}
+
+.education {
+    list-style: none;
+    padding: 0;
+}
+
+.education div {
+    margin-top: 3em;
+    position: relative;
+}
+
+.education .school {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    font-weight: 600;
+}
+
+.education .graduation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+}
+
+.education .degree {
+    padding-top: 2em;
+}
+
+/*
+ * EDUCATION END
+ */
+
+/*
+ * LINK
+ */
+
+.links:before {
+    content: "Links";
+}
+
+.links {
+    list-style: none;
+    padding: 0;
+}
+
+.links .name {
+    float: left;
+    font-weight: 600;
+    width: 20%;
+}
+
+.links .url {
+    float: right;
+    width: 80%;
+}
+
+.links .description {
+    display: none;
+}
+
+.links div:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+/*
+ * LINK END
+ */
+
+    </style>
   </head>
   <body>
-  <div><p class="name">Attila Tovt</p><div class="document"><ul class="open-source"><li><div><p class="name">coala</p><p class="description">Easy to use COde AnaLysis Application. Worked on different areas. My coala commits (<a href="https://github.com/coala-analyzer/coala/commits/master?author=Uran198">https://github.com/coala-analyzer/coala/commits/master?author=Uran198</a>), coala-bears commits (<a href="https://github.com/coala-analyzer/coala-bears/commits/master?author=Uran198">https://github.com/coala-analyzer/coala-bears/commits/master?author=Uran198</a>), issues opened (<a href="https://github.com/issues?utf8=%E2%9C%93&amp;amp;q=is%3Aissue+author%3AUran198+user%3Acoala-analyzer+">https://github.com/issues?utf8=%E2%9C%93&amp;amp;q=is%3Aissue+author%3AUran198+user%3Acoala-analyzer+</a>).</p></div></li><li><div><p class="name">django</p><p class="description">Worked on minor fetures and bug fixes. My commits (<a href="https://github.com/django/django/commits/master?author=Uran198">https://github.com/django/django/commits/master?author=Uran198</a>).</p></div></li></ul><ul class="projects"><li><div><p class="name">Rubik&amp;#x27;s cube</p><p class="description">3D visualization of Rubik&amp;#x27;s cube with intuitive mouse controls. Automatic solver of the cube in less than 21 moves. Using C# with OpenTK for visualization.</p></div></li><li><div><p class="name">Med project</p><p class="description">Open source project for free medical consultations. Built with Django and Bootstrap. Deployed on Digital Ocean.</p></div></li><li><div><p class="name">Codeforces helper script</p><p class="description">Script on Ruby for fast retrieval of problem sample tests. (Codeforces is a platform for programming contests)</p></div></li><li><div><p class="name">Stock price forecasting</p><p class="description">Script on Python for stock price forecasting based on determining repeating patterns. 53% of successful deals.</p></div></li></ul><ul class="employment"><li><div><p class="company">Ubisoft</p><ul class="points"><li><p>Passed the course of lectures on basic and advanced C++ topics</p></li><li><p>Implemented 2D shooter game in the team of four</p></li></ul><p class="position">Intern</p><p class="location">Kyiv, Ukraine</p><p class="period">January 2016 - February 2016</p></div></li></ul><ul class="links"><li><div><p class="name">Github</p><p class="url"><a href="https://github.com/Uran198">https://github.com/Uran198</a></p></div></li><li><div><p class="name">Topcoder</p><p class="url"><a href="https://www.topcoder.com/members/fine_plain/">https://www.topcoder.com/members/fine_plain/</a></p><p class="description">programming algorithmic contests</p></div></li><li><div><p class="name">Codeforces</p><p class="url"><a href="http://codeforces.com/profile/plain">http://codeforces.com/profile/plain</a></p><p class="description">programming algorithmic contests</p></div></li><li><div><p class="name">Stackoverflow</p><p class="url"><a href="http://stackoverflow.com/users/3546950/attila">http://stackoverflow.com/users/3546950/attila</a></p></div></li></ul><ul class="qualifications"><li><div><p class="name">Computer Languages</p><p class="description">Python, C++, Ruby, SQL, JavaScript, HTML, CSS</p></div></li><li><div><p class="name">Frameworks &amp;amp; Libraries</p><p class="description">Django, jQuery, Pandas</p></div></li><li><div><p class="name">Tools</p><p class="description">Git, Vim, Linux</p></div></li><li><div><p class="name">Theoretical knowledge</p><p class="description">Algorithms and Data Structures, OOP &amp;amp; OOD</p></div></li></ul><ul class="education"><li><div><p class="school">Taras Shevchenko National University of Kyiv</p><p class="graduation">Summer 2015</p><p class="degree">B. S. in Applied Mathematics</p></div></li><li><div><p class="school">Taras Shevchenko National University of Kyiv</p><p class="graduation">Expected Summer 2017</p><p class="degree">M. S. in Applied Mathematics</p></div></li></ul></div><ul class="emails"><li><p><a href="mailto:attila.tovt42@gmail.com">attila.tovt42@gmail.com</a></p></li><li><p><a href="mailto:uran198@gmail.com">uran198@gmail.com</a></p></li></ul></div>
+  <div><ul class="emails"><li><p><a href="mailto:attila.tovt42@gmail.com">attila.tovt42@gmail.com</a></p></li><li><p><a href="mailto:uran198@gmail.com">uran198@gmail.com</a></p></li></ul><div class="document"><ul class="employment"><li><div><ul class="points"><li><p>Passed the course of lectures on basic and advanced C++ topics</p></li><li><p>Implemented 2D shooter game in the team of four</p></li></ul><p class="location">Kyiv, Ukraine</p><p class="position">Intern</p><p class="period">January 2016 - February 2016</p><p class="company">Ubisoft</p></div></li></ul><ul class="projects"><li><div><p class="name">Rubik&amp;#x27;s cube</p><p class="description">3D visualization of Rubik&amp;#x27;s cube with intuitive mouse controls. Automatic solver of the cube in less than 21 moves. Using C# with OpenTK for visualization.</p></div></li><li><div><p class="name">Med project</p><p class="description">Open source project for free medical consultations. Built with Django and Bootstrap. Deployed on Digital Ocean.</p></div></li><li><div><p class="name">Codeforces helper script</p><p class="description">Script on Ruby for fast retrieval of problem sample tests. (Codeforces is a platform for programming contests)</p></div></li><li><div><p class="name">Stock price forecasting</p><p class="description">Script on Python for stock price forecasting based on determining repeating patterns. 53% of successful deals.</p></div></li></ul><ul class="links"><li><div><p class="name">Github</p><p class="url"><a href="https://github.com/Uran198">https://github.com/Uran198</a></p></div></li><li><div><p class="name">Topcoder</p><p class="url"><a href="https://www.topcoder.com/members/fine_plain/">https://www.topcoder.com/members/fine_plain/</a></p><p class="description">programming algorithmic contests</p></div></li><li><div><p class="name">Codeforces</p><p class="url"><a href="http://codeforces.com/profile/plain">http://codeforces.com/profile/plain</a></p><p class="description">programming algorithmic contests</p></div></li><li><div><p class="name">Stackoverflow</p><p class="url"><a href="http://stackoverflow.com/users/3546950/attila">http://stackoverflow.com/users/3546950/attila</a></p></div></li></ul><ul class="qualifications"><li><div><p class="name">Computer Languages</p><p class="description">Python, C++, Ruby, SQL, JavaScript, HTML, CSS</p></div></li><li><div><p class="name">Frameworks &amp;amp; Libraries</p><p class="description">Django, jQuery, Pandas</p></div></li><li><div><p class="name">Tools</p><p class="description">Git, Vim, Linux</p></div></li><li><div><p class="name">Theoretical knowledge</p><p class="description">Algorithms and Data Structures, OOP &amp;amp; OOD</p></div></li></ul><ul class="education"><li><div><p class="degree">B. S. in Applied Mathematics</p><p class="graduation">Summer 2015</p><p class="school">Taras Shevchenko National University of Kyiv</p></div></li><li><div><p class="degree">M. S. in Applied Mathematics</p><p class="graduation">Expected Summer 2017</p><p class="school">Taras Shevchenko National University of Kyiv</p></div></li></ul><ul class="open-source"><li><div><p class="name">coala</p><p class="description">Easy to use COde AnaLysis Application. Worked on different areas. My coala commits (<a href="https://github.com/coala-analyzer/coala/commits/master?author=Uran198">https://github.com/coala-analyzer/coala/commits/master?author=Uran198</a>), coala-bears commits (<a href="https://github.com/coala-analyzer/coala-bears/commits/master?author=Uran198">https://github.com/coala-analyzer/coala-bears/commits/master?author=Uran198</a>), issues opened (<a href="https://github.com/issues?utf8=%E2%9C%93&amp;amp;q=is%3Aissue+author%3AUran198+user%3Acoala-analyzer+">https://github.com/issues?utf8=%E2%9C%93&amp;amp;q=is%3Aissue+author%3AUran198+user%3Acoala-analyzer+</a>).</p></div></li><li><div><p class="name">django</p><p class="description">Worked on minor fetures and bug fixes. My commits (<a href="https://github.com/django/django/commits/master?author=Uran198">https://github.com/django/django/commits/master?author=Uran198</a>).</p></div></li></ul></div><p class="name">Attila Tovt</p></div>
   </body>
 </html>
