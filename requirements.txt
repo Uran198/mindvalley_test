@@ -1,3 +1,6 @@
+# Tic Tac Toe requirements
+-r tic_tac_toe/requirements.txt
+
 # Debug
 grip==4.1.0 #display md files before committing
 
