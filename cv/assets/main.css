@@ -1,7 +1,298 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .name {
+    position: absolute;
+    top: 0;
     font-size: 3em;
+    width: 100%;
+    text-align: center;
+}
+
+.emails {
+    position: absolute;
+    top: 4.5em;
+    width: 100%;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+}
+
+.emails li {
+    display: inline-block;
+    padding: 0.8em;
+}
+
+.document {
+    position: absolute;
+    top: 10em;
+}
+
+.document > * {
+    margin-top: 4.5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.document > *:before {
+    font-size: 2em;
+    width: 100%;
+    display: block;
+    text-align: center;
 }
 
 .document .name {
+    position: relative;
     font-size: 1em;
+    width: auto;
+    text-align: left;
 }
+
+/*
+ * EMPLOYMENT
+ */
+
+.employment:before {
+    content: "Employment";
+}
+
+.employment {
+    margin-top: 4.5em;
+    list-style: none;
+    padding: 0;
+}
+
+.employment div {
+    margin-top: 2em;
+    position: relative;
+}
+
+.employment .company {
+    position: absolute;
+    top: 2em;
+    left: 0;
+}
+
+.employment .position {
+    position: absolute;
+    top: 2em;
+    right: 0;
+}
+
+.employment .location {
+    position: absolute;
+    top: 3.3em;
+    left: 0;
+}
+
+.employment .period {
+    position: absolute;
+    top: 3.3em;
+    right: 0;
+}
+
+.employment .points {
+    padding-top: 5em;
+}
+
+/*
+ * EMPLOYMENT END
+ */
+
+/*
+ * PROJECTS
+ */
+
+.projects:before {
+    content: "Projects";
+}
+
+.projects {
+    list-style: none;
+    padding: 0;
+}
+
+.projects div {
+    position: relative;
+}
+
+.projects .name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    font-weight: 600;
+}
+
+.projects .description {
+    padding-top: 1.2em;
+}
+
+/*
+ * PROJECTS END
+ */
+
+/*
+ * OPEN SOURCE
+ */
+
+
+.open-source:before {
+    content: "Open Source";
+}
+
+.open-source {
+    list-style: none;
+    padding: 0;
+}
+
+.open-source .name {
+    width: 15%;
+    float: left;
+    font-weight: 600;
+}
+
+.open-source .description {
+    width: 85%;
+    float: right;
+}
+
+.open-source div:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*
+ * OPEN SOURCE END
+ */
+
+
+/*
+ * QUALIFICATIONS
+ */
+
+.qualifications:before {
+    content: "Qualifications";
+}
+
+.qualifications {
+    list-style: none;
+    padding: 0;
+}
+
+.qualifications .name {
+    width: 25%;
+    float: left;
+    font-weight: 600;
+}
+
+.qualifications .name:after {
+    content: ':';
+}
+
+.qualifications .description {
+    width: 75%;
+    float: right;
+    padding-left: 1em;
+}
+
+.qualifications div:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/*
+ * QUALIFICATIONS END
+ */
+
+/*
+ * EDUCATION
+ */
+
+.education:before {
+    content: "Education";
+}
+
+.education {
+    list-style: none;
+    padding: 0;
+}
+
+.education div {
+    margin-top: 3em;
+    position: relative;
+}
+
+.education .school {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    font-weight: 600;
+}
+
+.education .graduation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+}
+
+.education .degree {
+    padding-top: 2em;
+}
+
+/*
+ * EDUCATION END
+ */
+
+/*
+ * LINK
+ */
+
+.links:before {
+    content: "Links";
+}
+
+.links {
+    list-style: none;
+    padding: 0;
+}
+
+.links .name {
+    float: left;
+    font-weight: 600;
+    width: 20%;
+}
+
+.links .url {
+    float: right;
+    width: 80%;
+}
+
+.links .description {
+    display: none;
+}
+
+.links div:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+/*
+ * LINK END
+ */
