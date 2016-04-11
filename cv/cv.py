@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import json
+from html import escape
 
 
 def data_to_html(data, html_class=None):
@@ -27,9 +28,21 @@ def data_to_html(data, html_class=None):
     return result
 
 
+def escape_data(data):
+    """
+    Returns new data with all keys and values escaped using html.escape
+    function.
+    """
+    if isinstance(data, list):
+        return [escape_data(value) for value in data]
+    if isinstance(data, dict):
+        return {escape(key): escape_data(value) for key, value in data.items()}
+    return escape(data)
+
+
 if __name__ == "__main__":
     with open("cv.json") as fd:
-        data = json.load(fd)
+        data = escape_data(json.load(fd))
     result = """
 <!DOCTYPE HTML>
 <html>

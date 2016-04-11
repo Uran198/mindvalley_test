@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from cv import data_to_html
+from cv import data_to_html, escape_data
 
 
 class DataToHtmlTests(TestCase):
@@ -53,3 +53,36 @@ class DataToHtmlTests(TestCase):
         expected = ('<div><div class="key0"><ul class="key1"><li><div>'
                     '<p class="key2">value2</p></div></li></ul></div></div>')
         self.assertEqual(data_to_html(data), expected)
+
+
+class EscapeDataTest(TestCase):
+
+    def test_raw_string(self):
+        data = '<scr"'
+        expected = '&lt;scr&quot;'
+        self.assertEqual(escape_data(data), expected)
+
+    def test_list(self):
+        data = ['<scr"']
+        expected = ['&lt;scr&quot;']
+        self.assertEqual(escape_data(data), expected)
+
+    def test_dict(self):
+        data = {'cls"': '<scr"'}
+        expected = {'cls&quot;': '&lt;scr&quot;'}
+        self.assertEqual(escape_data(data), expected)
+
+    def test_dict_with_list(self):
+        data = {'cls"': ['<scr"']}
+        expected = {'cls&quot;': ['&lt;scr&quot;']}
+        self.assertEqual(escape_data(data), expected)
+
+    def test_list_with_dict(self):
+        data = [{'cls"': '<scr"'}]
+        expected = [{'cls&quot;': '&lt;scr&quot;'}]
+        self.assertEqual(escape_data(data), expected)
+
+    def test_deep_nested_dict(self):
+        data = {'cls"': {'"': [{'>': '<scr"'}]}}
+        expected = {'cls&quot;': {'&quot;': [{'&gt;': '&lt;scr&quot;'}]}}
+        self.assertEqual(escape_data(data), expected)
