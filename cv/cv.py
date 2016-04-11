@@ -30,5 +30,18 @@ def data_to_html(data, html_class=None):
 if __name__ == "__main__":
     with open("cv.json") as fd:
         data = json.load(fd)
-    print(data)
+    result = """
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+  {body}
+  </body>
+</html>
+"""
+    with open("result.html", 'w') as fd:
+        fd.write(result.format(title="CV", body=data_to_html(data)))
     print("Finished!")
