@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import argparse
 import json
 from html import escape
 
@@ -54,7 +55,22 @@ def urlize_data(data):
 
 
 if __name__ == "__main__":
-    with open("assets/cv.json") as fd:
+    parser = argparse.ArgumentParser(
+        description="""
+Transforms JSON formatted CV into standalone html file.
+""")
+    parser.add_argument('--input', '-i', dest='input', type=str,
+                        default="assets/cv.json",
+                        help="input JSON file")
+    parser.add_argument('--output', '-o', dest='output', type=str,
+                        default='result.html',
+                        help="output file")
+    parser.add_argument('--stylesheets', '-s', dest='stylesheets', type=str,
+                        default='assets/main.css',
+                        help="file with stylesheets to be used")
+    args = parser.parse_args()
+
+    with open(args.input) as fd:
         data = urlize_data(escape_data(json.load(fd)))
     result = """
 <!DOCTYPE HTML>
@@ -71,9 +87,9 @@ if __name__ == "__main__":
   </body>
 </html>
 """
-    with open("assets/main.css") as fd:
+    with open(args.stylesheets) as fd:
         styles = fd.read()
-    with open("result.html", 'w') as fd:
+    with open(args.output, 'w') as fd:
         fd.write(result.format(
             title="CV",
             body=data_to_html(data),
